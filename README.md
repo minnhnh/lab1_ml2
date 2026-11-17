@@ -63,7 +63,7 @@ lab1_ml2/
 `-- requirements.txt
 ```
 
-Notebook and report outputs will be added as the analysis is completed. See [docs/WORK_PLAN.md](docs/WORK_PLAN.md) for ownership, deliverables, and the seven-day schedule.
+Notebook and report outputs will be added as the analysis is completed. See [docs/WORK_PLAN.md](docs/WORK_PLAN.md) for ownership, deliverables, and the seven-day schedule. Nguyễn Hoàng Minh's detailed execution checklist is available in [docs/MINH_CHECKLIST.md](docs/MINH_CHECKLIST.md).
 
 ## Required outputs
 
@@ -102,4 +102,3 @@ jupyter lab
 - Commit source notebooks, report text, selected figures, and compact result tables.
 - Each statistical claim in the report must be reproducible from a notebook.
 - Use descriptive commit messages and review the other member's section before final submission.
-
