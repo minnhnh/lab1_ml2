@@ -8,8 +8,6 @@ Each member owns one dataset from raw data to PCA results. This avoids duplicate
 
 Primary deliverable: `notebooks/01_wine_quality.ipynb`
 
-Detailed personal checklist: [`MINH_CHECKLIST.md`](MINH_CHECKLIST.md)
-
 - Download and document the red and white Wine Quality files.
 - Add the `wine_type` column and integrate the two files.
 - Create the Wine Quality data dictionary and feature-type table.
@@ -92,3 +90,4 @@ Suggested commit messages:
 - `Add Heart Disease preprocessing and statistics`
 - `Add PCA explained variance and visualizations`
 - `Add cross-dataset discussion and final report`
+
