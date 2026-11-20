@@ -88,7 +88,7 @@ Tương quan âm mạnh nhất là `age`–`thalach` (r = -0,3938); tiếp theo 
 
 ![Heatmap tương quan Pearson giữa sáu biến định lượng](figures/heart_correlation_heatmap.png)
 
-*Hình 1. Tương quan Pearson; đường chéo tự tương quan không được tính khi xếp hạng cặp mạnh nhất.*
+*Hình HD-1. Tương quan Pearson; đường chéo tự tương quan không được tính khi xếp hạng cặp mạnh nhất. Đánh số lại khi ghép báo cáo chung.*
 
 Cramér's V hiệu chỉnh độ chệch và kiểm định chi-square giữa các biến phân loại với nhãn bệnh cho kết quả:
 
@@ -157,11 +157,11 @@ Theo trị tuyệt đối của loading, PC1 liên hệ mạnh nhất với `tha
 
 ![Phương sai giải thích riêng lẻ và tích lũy](figures/heart_pca_explained_variance.png)
 
-*Hình 2. Scree plot. Các thành phần PC19–PC25 có phương sai bằng 0 do dư thừa tuyến tính trong one-hot encoding.*
+*Hình HD-2. Scree plot. Các thành phần PC19–PC25 có phương sai bằng 0 do dư thừa tuyến tính trong one-hot encoding. Đánh số lại khi ghép báo cáo chung.*
 
 ![Phép chiếu PC1–PC2 theo nhãn bệnh](figures/heart_pca_pc1_pc2_by_disease.png)
 
-*Hình 3. PC1–PC2 giữ 38,93% phương sai của ma trận đã tiền xử lý.*
+*Hình HD-3. PC1–PC2 giữ 38,93% phương sai của ma trận đã tiền xử lý. Đánh số lại khi ghép báo cáo chung.*
 
 Trên hình PC1–PC2, nhóm không bệnh tập trung nhiều hơn về phía PC1 dương; nhóm có bệnh xuất hiện nhiều hơn ở phía PC1 âm. Hai nhóm vẫn chồng lấn đáng kể quanh vùng PC1 gần 0, nên phép chiếu hai chiều không tách hoàn toàn nhãn. Một số điểm nằm xa đám mây trung tâm; chúng được giữ vì các giá trị gốc nằm trong miền kiểm tra. Biểu đồ không phải kết quả của một mô hình phân loại.
 
