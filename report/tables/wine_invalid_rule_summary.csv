@@ -1,0 +1,15 @@
+rule,violation_count
+fixed acidity must be positive,0
+volatile acidity must be non-negative,0
+citric acid must be non-negative,0
+residual sugar must be non-negative,0
+chlorides must be non-negative,0
+free sulfur dioxide must be non-negative,0
+total sulfur dioxide must be non-negative,0
+free sulfur dioxide cannot exceed total,0
+density must be positive,0
+pH must be between 0 and 14,0
+sulphates must be non-negative,0
+alcohol percentage must be between 0 and 100,0
+quality must be between 0 and 10,0
+wine_type must be red or white,0

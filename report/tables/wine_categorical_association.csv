@@ -1,0 +1,8 @@
+measure,value
+chi-square statistic,92.46241838720472
+degrees of freedom,6.0
+p-value,9.325319644619722e-18
+bias-corrected Cramers V,0.1274957972106854
+minimum expected count,1.2772556390977443
+expected cells below 5,2.0
+expected cells below 5 (%),14.285714285714286

@@ -1,0 +1,12 @@
+variable,type_aware_iqr_outliers_after_cleaning
+chlorides,265
+citric acid,224
+volatile acidity,152
+sulphates,151
+fixed acidity,147
+residual sugar,142
+pH,74
+free sulfur dioxide,70
+total sulfur dioxide,59
+density,41
+alcohol,12

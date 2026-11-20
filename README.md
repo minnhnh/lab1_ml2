@@ -88,6 +88,7 @@ Create and activate a Python virtual environment, then install the dependencies:
 ```bash
 python -m venv .venv
 pip install -r requirements.txt
+python -m ipykernel install --user --name lab1-ml2 --display-name "Python (lab1_ml2)"
 ```
 
 Start Jupyter:

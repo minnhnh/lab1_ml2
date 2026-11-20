@@ -1,0 +1,14 @@
+﻿variable,description,role,continuous_or_discrete,quantitative_or_qualitative,numerical_or_categorical,actual_pandas_dtype,used_to_fit_pca
+fixed acidity,Concentration of non-volatile acids that contribute to wine acidity,input feature,continuous,quantitative,numerical,float64,yes
+volatile acidity,"Concentration of volatile acids, mainly acetic acid",input feature,continuous,quantitative,numerical,float64,yes
+citric acid,Citric-acid concentration contributing freshness and flavor,input feature,continuous,quantitative,numerical,float64,yes
+residual sugar,Sugar remaining after fermentation,input feature,continuous,quantitative,numerical,float64,yes
+chlorides,Salt concentration in the wine,input feature,continuous,quantitative,numerical,float64,yes
+free sulfur dioxide,Free SO2 available to protect the wine from oxidation and microbes,input feature,continuous,quantitative,numerical,float64,yes
+total sulfur dioxide,Total free and bound SO2 in the wine,input feature,continuous,quantitative,numerical,float64,yes
+density,Wine density relative to water,input feature,continuous,quantitative,numerical,float64,yes
+pH,Acidity level expressed on the pH scale,input feature,continuous,quantitative,numerical,float64,yes
+sulphates,Sulphate concentration associated with wine preservation,input feature,continuous,quantitative,numerical,float64,yes
+alcohol,Alcohol content of the wine,input feature,continuous,quantitative,numerical,float64,yes
+quality,Sensory quality score assigned to the wine,target,discrete (ordinal),quantitative/ordinal,numerical,int64,no
+wine_type,Source label identifying red or white wine,integration/visualization label,discrete (nominal),qualitative,categorical,str,no

@@ -1,0 +1,4 @@
+target_variance_ratio,target_variance_percent,minimum_components,achieved_variance_ratio,achieved_variance_percent
+0.8,80.0,6,0.8521454119688784,85.21454119688784
+0.9,90.0,8,0.9456580077260254,94.56580077260254
+0.95,95.0,9,0.9762690042573835,97.62690042573836

@@ -1,0 +1,12 @@
+metric,value
+rows,6497
+columns,13
+missing cells,0
+infinite numerical cells,0
+duplicate excess rows (including wine_type),1177
+duplicate excess rows (ignoring wine_type),1179
+basic validity-rule violations,0
+global-IQR outlier cells,1989
+global-IQR outlier rows,1473
+type-aware IQR outlier cells,1636
+type-aware IQR outlier rows,1288

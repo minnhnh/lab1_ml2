@@ -4,6 +4,7 @@ __pycache__/
 .venv/
 venv/
 .ipynb_checkpoints/
+.jupyter/
 
 # IDE and operating-system files
 .idea/
@@ -27,4 +28,3 @@ report/*.aux
 report/*.log
 report/*.out
 report/*.toc
-

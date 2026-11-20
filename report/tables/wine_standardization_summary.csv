@@ -1,0 +1,9 @@
+metric,value
+rows,5320.0
+features standardized,11.0
+maximum absolute standardized mean,1.8570274808286527e-14
+maximum absolute deviation of population std from 1,2.220446049250313e-16
+rows containing at least one absolute z-score above 3,431.0
+values with absolute z-score above 3,482.0
+rows containing at least one absolute z-score above 5,63.0
+values with absolute z-score above 5,72.0

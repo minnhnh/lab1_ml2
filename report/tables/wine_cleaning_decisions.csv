@@ -1,0 +1,5 @@
+issue,finding,action,reason
+missing values,None detected,No imputation required,The source files are complete
+infinite/invalid values,None detected by the documented validity rules,No correction required,All observations satisfy the basic physical/domain checks
+exact duplicates,1177 excess rows detected within wine_type,Remove exact duplicates and retain the first occurrence,Repeated rows would receive extra weight in statistics and PCA
+IQR outliers,1046 cleaned rows flagged after type-aware IQR recalculation,Retain valid observations; store a separate flag for transparency,IQR flags are frequent and do not prove measurement error

@@ -1,0 +1,10 @@
+metric,before,after,change
+rows,6497.0,5320.0,-1177.0
+columns,13.0,13.0,0.0
+missing cells,0.0,0.0,0.0
+infinite numerical cells,0.0,0.0,0.0
+duplicate excess rows,1177.0,0.0,-1177.0
+basic validity-rule violations,0.0,0.0,0.0
+type-aware IQR outlier cells,1636.0,1337.0,-299.0
+type-aware IQR outlier rows,1288.0,1046.0,-242.0
+type-aware IQR outlier row rate (%),19.82,19.66,-0.16000000000000014
