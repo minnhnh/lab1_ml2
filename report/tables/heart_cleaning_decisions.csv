@@ -1,0 +1,8 @@
+,issue,action,reason
+0,? / ô trống,Chuyển thành null,Không phải giá trị đo hợp lệ
+1,Sai kiểu hoặc ngoài miền,Chuyển thành null,"Cho phép xử lý nhất quán, không bỏ cả hàng"
+2,Hàng trùng hoàn toàn,"Giữ lần đầu, bỏ bản sao",Tránh đếm lặp hồ sơ
+3,Biến định lượng thiếu,Điền trung vị,Ít nhạy với lệch phân phối và ngoại lệ
+4,Biến phân loại thiếu,Điền mode,"Giữ mức phổ biến, ghi số ô đã điền"
+5,Nhãn num thiếu/sai,Bỏ hàng,Không suy đoán mục tiêu
+6,Ngoại lệ IQR nhưng hợp lệ,Giữ và gắn cờ,Có thể là quan sát thật; không xóa tự động

@@ -1,0 +1,14 @@
+,feature,method,missing_before_imputation,fill_value
+0,age,median,0,56.0
+1,trestbps,median,0,130.0
+2,chol,median,0,241.0
+3,thalach,median,0,153.0
+4,oldpeak,median,0,0.8
+5,ca,median,4,0.0
+6,sex,mode,0,
+7,cp,mode,0,
+8,fbs,mode,0,
+9,restecg,mode,0,
+10,exang,mode,0,
+11,slope,mode,0,
+12,thal,mode,2,3.0

@@ -2,7 +2,7 @@
 
 **Phụ trách:** Nguyễn Hoàng Anh — **MSSV: 2410064**
 
-> Phần này là bản thảo riêng cho bộ dữ liệu Heart Disease. Các số liệu được đánh dấu bằng mã notebook sẽ được điền từ lần chạy `notebooks/02_heart_disease.ipynb` trên tệp dữ liệu gốc; không suy đoán kết quả khi tệp chưa có trong workspace.
+> Phần này dùng kết quả thực tế từ `notebooks/02_heart_disease.ipynb` và tệp processed Cleveland của UCI. Bảng chi tiết có thể tái tạo từ các CSV Heart Disease trong `report/tables/`.
 
 ## 1. Mô tả dữ liệu và mục tiêu phân tích
 
@@ -42,30 +42,67 @@ Các mã số như `cp`, `restecg`, `slope` và `thal` biểu diễn nhóm/loạ
 
 ## 3. Chất lượng dữ liệu và làm sạch
 
-Tệp Cleveland dùng `?` để biểu diễn một số giá trị thiếu. Notebook chuyển dấu này thành null, ép các cột về kiểu số và kiểm tra miền giá trị theo từ điển UCI. Các giá trị sai miền được chuyển thành thiếu trước khi điền; hàng trùng hoàn toàn được loại một lần; hàng thiếu nhãn đích (nếu có) bị loại vì không thể suy ra nhãn. Biến số được điền bằng trung vị, biến phân loại bằng mode. Các quyết định này được ghi thành bảng trong notebook để số liệu trước/sau có thể kiểm tra lại.
+Tệp có 303 hàng và 14 cột. Sáu ô thiếu xuất hiện ở `ca` (4) và `thal` (2); không có giá trị sai kiểu, sai miền hoặc hàng trùng hoàn toàn. Bốn giá trị thiếu `ca` được điền bằng trung vị 0; hai giá trị thiếu `thal` được điền bằng mode 3. Không có hàng nào bị loại, nên còn 303 hàng sau làm sạch. Các giá trị được kiểm tra theo miền mã của UCI; không tìm thấy giá trị ngoài miền.
 
 Ngoại lệ được gắn cờ bằng quy tắc IQR trên các biến số, nhưng không tự động xóa. Một điểm nằm ngoài 1,5 IQR không nhất thiết là lỗi đo; xóa hàng có thể làm mất các trường hợp lâm sàng cực trị. Chỉ giá trị vi phạm quy tắc miền được xử lý như giá trị lỗi.
 
 | Chỉ tiêu | Trước làm sạch | Sau làm sạch | Ghi chú |
 |---|---:|---:|---|
-| Số hàng | 303 theo nguồn; xác nhận từ tệp | Chạy notebook để điền | Hàng trùng hoặc thiếu nhãn có thể bị loại |
+| Số hàng | 303 | 303 | Không có hàng trùng hoặc thiếu nhãn |
 | Số cột nguồn | 14 | 14 | Gồm 13 đầu vào và `num`; nhãn nhị phân phát sinh chỉ dùng để diễn giải |
-| Ô thiếu (`?`/null) | Chạy notebook để điền | 0 trong đầu vào sau điền | `num` không được impute |
-| Hàng trùng hoàn toàn | Chạy notebook để điền | 0 | Giữ lần xuất hiện đầu tiên |
-| Giá trị ngoài miền | Chạy notebook để điền | 0 trong các cột đầu vào sau xử lý | Ngoài miền được chuyển thành thiếu rồi impute |
-| Hàng có ít nhất một ngoại lệ IQR | Chạy notebook để điền | Chạy notebook để điền | Cờ kiểm tra, không tự động xóa |
+| Ô thiếu (`?`/null) | 6 (`ca`: 4; `thal`: 2) | 0 | `ca`: trung vị 0; `thal`: mode 3 |
+| Hàng trùng hoàn toàn | 0 | 0 | Không có hàng cần loại |
+| Giá trị ngoài miền | 0 | 0 | Tất cả mã nằm trong miền kiểm tra |
+| Hàng có ít nhất một ngoại lệ IQR | 35 | 35 | Cờ kiểm tra, không tự động xóa |
+
+Theo IQR trên sáu biến số, `ca` có 20 cờ ngoại lệ, `trestbps` 9, `chol` 5, `oldpeak` 5 và `thalach` 1; `age` không có. Một hàng có thể bị gắn cờ ở nhiều cột. Các điểm này được giữ vì không vi phạm miền hợp lệ; do đó làm sạch không thay đổi số mẫu.
 
 ## 4. Thống kê mô tả và phân tích biến phân loại
 
-Notebook tính trung bình và phương sai mẫu cho các biến định lượng, ma trận hiệp phương sai và Pearson correlation giữa `age`, `trestbps`, `chol`, `thalach`, `oldpeak`, `ca`. Pearson chỉ được diễn giải cho nhóm biến định lượng này; không tính tương quan Pearson trên các mã danh nghĩa như `cp` hoặc `thal`.
+Notebook tính trung bình, phương sai mẫu, hiệp phương sai và Pearson correlation giữa `age`, `trestbps`, `chol`, `thalach`, `oldpeak`, `ca`. Pearson chỉ được diễn giải cho nhóm biến định lượng này; không tính tương quan Pearson trên các mã danh nghĩa như `cp` hoặc `thal`.
+
+| Biến định lượng | Trung bình | Phương sai mẫu |
+|---|---:|---:|
+| `age` | 54,4389 | 81,6974 |
+| `trestbps` | 131,6898 | 309,7511 |
+| `chol` | 246,6931 | 2.680,8492 |
+| `thalach` | 149,6073 | 523,2658 |
+| `oldpeak` | 1,0396 | 1,3481 |
+| `ca` | 0,6634 | 0,8731 |
+
+Một vài phần tử ngoài đường chéo của ma trận hiệp phương sai mẫu:
+
+| Cặp biến | Hiệp phương sai |
+|---|---:|
+| `age` – `thalach` | -81,4231 |
+| `trestbps` – `chol` | 118,5733 |
+| `oldpeak` – `ca` | 0,3266 |
 
 | Kết quả cần báo cáo | Giá trị |
 |---|---|
-| Biến có tương quan Pearson mạnh nhất theo trị tuyệt đối (không tính đường chéo) | Chạy notebook để điền |
-| Hệ số tương quan của cặp mạnh nhất | Chạy notebook để điền |
-| Kiểm định liên hệ giữa từng biến phân loại và `disease_label` | Bảng chi-square/Cramér's V do notebook sinh |
+| Cặp có tương quan Pearson mạnh nhất theo trị tuyệt đối | `age` – `thalach` |
+| Hệ số tương quan của cặp mạnh nhất | r = -0,3938 |
+| Phân bố nhãn phân tích | Không bệnh: 164 (54,1%); có bệnh: 139 (45,9%) |
 
-Tần suất từng mức của biến phân loại và bảng chéo theo nhãn bệnh giúp mô tả phân bố của mẫu. Cramér's V được dùng như thước đo độ lớn liên hệ cho biến phân loại; p-value chi-square được xem là kết quả khám phá trên bộ dữ liệu nhỏ, không phải bằng chứng nhân quả.
+Tương quan âm mạnh nhất là `age`–`thalach` (r = -0,3938); tiếp theo là `age`–`ca` (r = 0,3653). Không cặp số nào có |r| ≥ 0,4, nên các liên hệ tuyến tính cặp đôi ở nhóm biến định lượng không mạnh trong mẫu này.
+
+![Heatmap tương quan Pearson giữa sáu biến định lượng](figures/heart_correlation_heatmap.png)
+
+*Hình 1. Tương quan Pearson; đường chéo tự tương quan không được tính khi xếp hạng cặp mạnh nhất.*
+
+Cramér's V hiệu chỉnh độ chệch và kiểm định chi-square giữa các biến phân loại với nhãn bệnh cho kết quả:
+
+| Biến phân loại | Cramér's V | χ² (bậc tự do) | p-value |
+|---|---:|---:|---:|
+| `thal` | 0,5169 | 82,68 (2) | < 0,001 |
+| `cp` | 0,5108 | 81,82 (3) | < 0,001 |
+| `exang` | 0,4288 | 56,52 (1) | < 0,001 |
+| `slope` | 0,3807 | 45,78 (2) | < 0,001 |
+| `sex` | 0,2712 | 23,22 (1) | < 0,001 |
+| `restecg` | 0,1632 | 10,05 (2) | 0,0066 |
+| `fbs` | 0,0000 | 0,19 (1) | 0,6601 |
+
+Trong mẫu này, `thal`, `cp` và `exang` có liên hệ phân loại mạnh nhất với nhãn bệnh theo Cramér's V. Ô kỳ vọng nhỏ nhất của bảng `restecg` là 1,83, dưới ngưỡng thường dùng 5, nên kết quả chi-square của biến này cần được xem thận trọng. Các kiểm định mang tính khám phá và không hàm ý nguyên nhân.
 
 ## 5. Tiền xử lý và phương pháp PCA
 
@@ -75,7 +112,7 @@ PCA nhạy với thang đo, nên sáu biến số được chuẩn hóa bằng z
 
 ## 6. Kết quả PCA và trực quan hóa
 
-Các bảng và hình bên dưới do notebook tạo sau khi chạy trên dữ liệu gốc:
+Notebook tạo bảng phương sai giải thích cho tất cả 25 thành phần và lưu bản đầy đủ trong `report/tables/heart_pca_explained_variance.csv`. Các ngưỡng tích lũy và so sánh số thành phần là:
 
 - Bảng phương sai giải thích riêng lẻ và tích lũy cho từng PC.
 - Bảng số thành phần tối thiểu để đạt 80%, 90% và 95% phương sai tích lũy.
@@ -85,17 +122,56 @@ Các bảng và hình bên dưới do notebook tạo sau khi chạy trên dữ l
 
 | Chỉ số | Kết quả |
 |---|---:|
-| Số cột sau mã hóa trước PCA | Chạy notebook để điền |
-| Phương sai tích lũy của PC1–PC2 | Chạy notebook để điền |
-| Số PC đạt ít nhất 80% | Chạy notebook để điền |
-| Số PC đạt ít nhất 90% | Chạy notebook để điền |
-| Số PC đạt ít nhất 95% | Chạy notebook để điền |
+| Số cột sau mã hóa trước PCA | 25 |
+| Phương sai tích lũy của PC1–PC2 | 38,93% |
+| Số PC đạt ít nhất 80% | 8 (81,40%) |
+| Số PC đạt ít nhất 90% | 11 (91,06%) |
+| Số PC đạt ít nhất 95% | 13 (95,63%) |
+
+| Thành phần | Riêng lẻ (%) | Tích lũy (%) | Thành phần | Riêng lẻ (%) | Tích lũy (%) |
+|---|---:|---:|---|---:|---:|
+| PC1 | 25,71 | 25,71 | PC10 | 3,25 | 88,25 |
+| PC2 | 13,22 | 38,93 | PC11 | 2,81 | 91,06 |
+| PC3 | 9,79 | 48,72 | PC12 | 2,39 | 93,45 |
+| PC4 | 8,79 | 57,50 | PC13 | 2,18 | 95,63 |
+| PC5 | 8,24 | 65,75 | PC14 | 1,75 | 97,38 |
+| PC6 | 6,09 | 71,84 | PC15 | 0,89 | 98,26 |
+| PC7 | 4,92 | 76,76 | PC16 | 0,83 | 99,10 |
+| PC8 | 4,64 | 81,40 | PC17 | 0,71 | 99,81 |
+| PC9 | 3,61 | 85,00 | PC18 | 0,19 | 100,00 |
+
+PC1 giải thích nhiều nhất (25,71%). PC18 là thành phần cuối cùng có phương sai dương đáng kể (0,19%); PC19–PC25 có phương sai xấp xỉ 0. Bảy thành phần bằng 0 xuất hiện do giữ toàn bộ mức của bảy biến phân loại one-hot, tạo các quan hệ tuyến tính phụ thuộc giữa chỉ báo trong cùng một biến. Chúng không mang thêm thông tin. Với các thành phần có phương sai dương, phương sai thấp tự nó không chứng minh rằng một thành phần vô ích cho dự đoán; PCA không tối ưu quan hệ với nhãn.
+
+| Số thành phần k | Phương sai giữ lại | Số chiều giảm | MSE tái tạo |
+|---:|---:|---:|---:|
+| 2 | 38,93% | 23/25 (92%) | 0,2297 |
+| 3 | 48,72% | 22/25 (88%) | 0,1929 |
+| 5 | 65,75% | 20/25 (80%) | 0,1288 |
+| 8 | 81,40% | 17/25 (68%) | 0,0700 |
+| 11 | 91,06% | 14/25 (56%) | 0,0336 |
+| 13 | 95,63% | 12/25 (48%) | 0,0164 |
+
+Hai thành phần cho biểu đồ gọn nhất nhưng chỉ giữ 38,93% phương sai. Tám thành phần là lựa chọn tối thiểu đạt ngưỡng 80%; 11 và 13 thành phần lần lượt vượt 90% và 95%. Sai số tái tạo giảm khi tăng k, đổi lại số chiều được loại bỏ ít hơn. MSE được tính trong ma trận sau chuẩn hóa/mã hóa.
+
+Theo trị tuyệt đối của loading, PC1 liên hệ mạnh nhất với `thalach` (+0,451), `oldpeak` (-0,434), `age` (-0,425) và `ca` (-0,403). PC2 chủ yếu liên hệ với `chol` (+0,606), `trestbps` (+0,460), `age` (+0,323), `thalach` (+0,299) và `oldpeak` (-0,240). Dấu của trục có thể đảo; diễn giải tập trung vào các biến đóng góp lớn và hướng tương đối.
+
+![Phương sai giải thích riêng lẻ và tích lũy](figures/heart_pca_explained_variance.png)
+
+*Hình 2. Scree plot. Các thành phần PC19–PC25 có phương sai bằng 0 do dư thừa tuyến tính trong one-hot encoding.*
+
+![Phép chiếu PC1–PC2 theo nhãn bệnh](figures/heart_pca_pc1_pc2_by_disease.png)
+
+*Hình 3. PC1–PC2 giữ 38,93% phương sai của ma trận đã tiền xử lý.*
+
+Trên hình PC1–PC2, nhóm không bệnh tập trung nhiều hơn về phía PC1 dương; nhóm có bệnh xuất hiện nhiều hơn ở phía PC1 âm. Hai nhóm vẫn chồng lấn đáng kể quanh vùng PC1 gần 0, nên phép chiếu hai chiều không tách hoàn toàn nhãn. Một số điểm nằm xa đám mây trung tâm; chúng được giữ vì các giá trị gốc nằm trong miền kiểm tra. Biểu đồ không phải kết quả của một mô hình phân loại.
 
 Khi diễn giải, cần lưu ý PCA tối đa hóa phương sai chứ không tối ưu phân tách nhãn bệnh. Nếu hai màu chồng lấn trên PC1–PC2, điều đó chỉ nói rằng phép chiếu hai chiều không tách rõ nhóm; không chứng minh rằng dữ liệu không chứa thông tin liên quan đến nhãn. Dấu của mỗi PC có thể đảo mà không làm thay đổi nghiệm.
 
 ## 7. Kết luận và giới hạn
 
-Sau khi chạy notebook, phần này sẽ tổng hợp số mẫu còn lại, các quyết định làm sạch, cặp tương quan mạnh nhất và số PC cần thiết cho các ngưỡng phương sai. Giới hạn cần nêu gồm kích thước nhỏ của tập Cleveland, tuổi đời và tính đại diện hạn chế của dữ liệu, cách mã hóa biến phân loại, độ nhạy của PCA với ngoại lệ, cùng việc phương sai lớn không đồng nghĩa với giá trị dự đoán lớn. Kết quả là phân tích học thuật trên bộ dữ liệu công khai, không phải kết luận lâm sàng.
+Sau khi điền các giá trị thiếu bằng trung vị/mode và giữ lại các điểm IQR hợp lệ, còn nguyên 303 quan sát. Tương quan tuyến tính mạnh nhất giữa các biến số là âm vừa phải giữa tuổi và nhịp tim tối đa; các liên hệ phân loại lớn nhất với nhãn bệnh trong mẫu thuộc về thal và cp. Trên 25 cột sau one-hot, PC1–PC2 giữ 38,93%; 8 PC đạt 81,40%, còn 13 PC đạt 95,63%. Vì vậy, số PC phù hợp phụ thuộc mục đích: 2 PC hỗ trợ trực quan hóa, còn 8–13 PC giữ phần lớn phương sai hơn.
+
+Giới hạn gồm kích thước nhỏ và tính đại diện hạn chế của Cleveland, việc điền giá trị thiếu có thể làm giảm biến thiên, cách mã hóa one-hot ảnh hưởng khoảng cách trong PCA, và độ nhạy của PCA với ngoại lệ. PCA tối ưu phương sai tổng thể chứ không tối ưu dự đoán `num`; đây là phân tích học thuật trên dữ liệu công khai, không phải kết luận lâm sàng.
 
 ## Tài liệu tham khảo
 
