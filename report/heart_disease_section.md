@@ -55,7 +55,7 @@ Ngoại lệ được gắn cờ bằng quy tắc IQR trên các biến số, nh
 | Giá trị ngoài miền | 0 | 0 | Tất cả mã nằm trong miền kiểm tra |
 | Hàng có ít nhất một ngoại lệ IQR | 35 | 35 | Cờ kiểm tra, không tự động xóa |
 
-Theo IQR trên sáu biến số, `ca` có 20 cờ ngoại lệ, `trestbps` 9, `chol` 5, `oldpeak` 5 và `thalach` 1; `age` không có. Một hàng có thể bị gắn cờ ở nhiều cột. Các điểm này được giữ vì không vi phạm miền hợp lệ; do đó làm sạch không thay đổi số mẫu.
+Theo IQR trên sáu biến số, `ca` có 20 cờ ngoại lệ, `trestbps` 9, `chol` 5, `oldpeak` 5 và `thalach` 1; `age` không có. Một hàng có thể bị gắn cờ ở nhiều cột. Riêng `ca = 3` vượt cận trên IQR là 2,5 nhưng vẫn thuộc miền hợp lệ 0–3 của biến này. Các điểm được gắn cờ đều được giữ vì không vi phạm miền hợp lệ; do đó làm sạch không thay đổi số mẫu.
 
 ## 4. Thống kê mô tả và phân tích biến phân loại
 
@@ -140,7 +140,7 @@ Notebook tạo bảng phương sai giải thích cho tất cả 25 thành phần
 | PC8 | 4,64 | 81,40 | PC17 | 0,71 | 99,81 |
 | PC9 | 3,61 | 85,00 | PC18 | 0,19 | 100,00 |
 
-PC1 giải thích nhiều nhất (25,71%). PC18 là thành phần cuối cùng có phương sai dương đáng kể (0,19%); PC19–PC25 có phương sai xấp xỉ 0. Bảy thành phần bằng 0 xuất hiện do giữ toàn bộ mức của bảy biến phân loại one-hot, tạo các quan hệ tuyến tính phụ thuộc giữa chỉ báo trong cùng một biến. Chúng không mang thêm thông tin. Với các thành phần có phương sai dương, phương sai thấp tự nó không chứng minh rằng một thành phần vô ích cho dự đoán; PCA không tối ưu quan hệ với nhãn.
+PC1 giải thích nhiều nhất (25,71%). PC18 là thành phần cuối cùng có phương sai dương đáng kể (0,19%); PC19–PC25 có phương sai xấp xỉ 0. Bảy thành phần bằng 0 xuất hiện do giữ toàn bộ mức của bảy biến phân loại one-hot, tạo các quan hệ tuyến tính phụ thuộc giữa chỉ báo trong cùng một biến. Chúng không mang thêm thông tin, nên bảng loading chỉ lưu PC1–PC18; loading của không gian phương sai bằng 0 không ổn định và không có ý nghĩa diễn giải duy nhất. Với các thành phần có phương sai dương, phương sai thấp tự nó không chứng minh rằng một thành phần vô ích cho dự đoán; PCA không tối ưu quan hệ với nhãn.
 
 | Số thành phần k | Phương sai giữ lại | Số chiều giảm | MSE tái tạo |
 |---:|---:|---:|---:|
@@ -151,7 +151,7 @@ PC1 giải thích nhiều nhất (25,71%). PC18 là thành phần cuối cùng c
 | 11 | 91,06% | 14/25 (56%) | 0,0336 |
 | 13 | 95,63% | 12/25 (48%) | 0,0164 |
 
-Hai thành phần cho biểu đồ gọn nhất nhưng chỉ giữ 38,93% phương sai. Tám thành phần là lựa chọn tối thiểu đạt ngưỡng 80%; 11 và 13 thành phần lần lượt vượt 90% và 95%. Sai số tái tạo giảm khi tăng k, đổi lại số chiều được loại bỏ ít hơn. MSE được tính trong ma trận sau chuẩn hóa/mã hóa.
+Hai thành phần cho biểu đồ gọn nhất nhưng chỉ giữ 38,93% phương sai. Tám thành phần là lựa chọn tối thiểu đạt ngưỡng 80%; 11 và 13 thành phần lần lượt vượt 90% và 95%. Tỷ lệ giảm chiều trong bảng được tính so với 25 cột sau mã hóa, không phải 13 đặc trưng nguồn. Sai số tái tạo giảm khi tăng k, đổi lại số chiều được loại bỏ ít hơn. MSE được tính trong ma trận sau chuẩn hóa/mã hóa.
 
 Theo trị tuyệt đối của loading, PC1 liên hệ mạnh nhất với `thalach` (+0,451), `oldpeak` (-0,434), `age` (-0,425) và `ca` (-0,403). PC2 chủ yếu liên hệ với `chol` (+0,606), `trestbps` (+0,460), `age` (+0,323), `thalach` (+0,299) và `oldpeak` (-0,240). Dấu của trục có thể đảo; diễn giải tập trung vào các biến đóng góp lớn và hướng tương đối.
 

@@ -26,11 +26,16 @@ Source: <https://archive.ics.uci.edu/dataset/45/heart+disease>
 
 Use the processed Cleveland subset with 13 input features and the `num` target.
 
-Expected local file:
+The Heart Disease notebook prepares the input automatically. It first checks for:
 
 ```text
 data/raw/processed.cleveland.data
+heart+disease.zip
+../heart+disease.zip
+data/raw/heart+disease.zip
 ```
+
+If the processed Cleveland file is missing, the notebook extracts it from the first local archive found. If no archive is available, it downloads the official UCI archive to `data/raw/heart+disease.zip` and extracts only `processed.cleveland.data`. Raw files and archives remain excluded from Git.
 
 During preprocessing:
 
@@ -41,5 +46,4 @@ During preprocessing:
 
 ## Reproducibility
 
-Record file names, retrieval dates, row counts, column counts, and cleaning decisions in the notebooks. Do not silently alter raw files.
-
+Record file names, retrieval dates, row counts, column counts, and cleaning decisions in the notebooks. Do not silently alter raw files. The Heart Disease notebook may extract the unchanged Cleveland member from the official archive, but it does not rewrite its contents.
