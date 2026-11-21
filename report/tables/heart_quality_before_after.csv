@@ -1,0 +1,10 @@
+,before_cleaning,after_cleaning
+rows,303.0,303.0
+columns,14.0,14.0
+source_missing_cells,6.0,0.0
+parse_failure_cells,0.0,0.0
+out_of_domain_cells,0.0,0.0
+exact_duplicate_rows,0.0,0.0
+rows_with_numeric_IQR_flag,35.0,35.0
+rows_removed_as_duplicates,,0.0
+rows_removed_for_missing_target,,0.0

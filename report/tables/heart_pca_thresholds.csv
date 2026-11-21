@@ -1,0 +1,4 @@
+,threshold,minimum_components,actual_cumulative_variance
+0,0.8,8,0.8139906487291247
+1,0.9,11,0.9106470744688033
+2,0.95,13,0.9563301235940569

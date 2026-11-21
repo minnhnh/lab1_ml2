@@ -1,0 +1,15 @@
+,variable,description,continuous_or_discrete,measurement_type,role
+0,age,"Tuổi, năm",liên tục (ghi số nguyên),"định lượng, số",đầu vào
+1,sex,"Giới tính: 0 nữ, 1 nam",rời rạc,"định tính, nhị phân",đầu vào
+2,cp,"Đau ngực: 1 điển hình, 2 không điển hình, 3 không do đau thắt ngực, 4 không triệu chứng",rời rạc,"định tính, danh nghĩa",đầu vào
+3,trestbps,"Huyết áp lúc nghỉ, mm Hg",liên tục,"định lượng, số",đầu vào
+4,chol,"Cholesterol huyết thanh, mg/dl",liên tục,"định lượng, số",đầu vào
+5,fbs,"Đường huyết lúc đói >120 mg/dl, mã 0/1",rời rạc,"định tính, nhị phân",đầu vào
+6,restecg,"ECG nghỉ: 0 bình thường, 1 bất thường ST-T, 2 phì đại thất trái",rời rạc,"định tính, danh nghĩa",đầu vào
+7,thalach,Nhịp tim tối đa đạt được,liên tục,"định lượng, số",đầu vào
+8,exang,"Đau thắt ngực do gắng sức, mã 0/1",rời rạc,"định tính, nhị phân",đầu vào
+9,oldpeak,ST depression do gắng sức so với lúc nghỉ,liên tục,"định lượng, số",đầu vào
+10,slope,"Độ dốc ST: 1 đi lên, 2 phẳng, 3 đi xuống",rời rạc có thứ tự,"định tính, thứ bậc",đầu vào
+11,ca,"Số mạch lớn hiện màu khi soi huỳnh quang, 0–3",rời rạc,"định lượng, biến đếm",đầu vào
+12,thal,"Thal: 3 bình thường, 6 khuyết tật cố định, 7 khuyết tật có thể đảo ngược",rời rạc,"định tính, danh nghĩa",đầu vào
+13,num,Mức chẩn đoán gốc 0–4,rời rạc có thứ tự,nhãn mục tiêu,không dùng PCA
